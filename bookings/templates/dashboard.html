@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Personal Dashboard</h2>
+<p>Here you can track your upcoming cruise reservations and history.</p>
+<hr>
+
+<h3>Your Booked Cruise Itineraries</h3>
+{% for booking in bookings %}
+    <div class="card" style="border-left: 5px solid #28a745;">
+        <h4 style="margin-top: 0; color: #22543d;">✨ {{ booking.cruise.name }}</h4>
+        <p><strong>📍 Destination:</strong> {{ booking.cruise.destination }}</p>
+        <p><strong>📅 Departure Date:</strong> {{ booking.cruise.departure_date }}</p>
+        <p><strong>🎟️ Tickets Reserved:</strong> {{ booking.number_of_tickets }}</p>
+        <p style="margin-bottom: 0; color: #718096;"><small>Transaction finalized on: {{ booking.booking_date }}</small></p>
+    </div>
+{% empty %}
+    <div class="card" style="text-align: center; padding: 40px 20px;">
+        <p>You haven't booked any cruises yet!</p>
+        <a href="{% url 'home' %}" class="btn" style="margin-top: 10px;">Browse Available Cruises</a>
+    </div>
+{% endfor %}
+{% endblock %}

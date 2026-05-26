@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Confirm Your Booking</h2>
+<p>Review the itinerary details below to reserve your cabin tickets.</p>
+
+<div class="card" style="border-left: 5px solid #3182ce;">
+    <h3>{{ cruise.name }}</h3>
+    <p><strong>📍 Destination:</strong> {{ cruise.destination }}</p>
+    <p><strong>📅 Setting Sail:</strong> {{ cruise.departure_date }}</p>
+    <p><strong>💲 Cost:</strong> ${{ cruise.price }} USD</p>
+</div>
+
+<div class="card" style="max-width: 400px;">
+    <h4>Specify Ticket Quantity</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn" style="margin-top: 10px;">Confirm & Book Itinerary</button>
+    </form>
+</div>
+{% endblock %}

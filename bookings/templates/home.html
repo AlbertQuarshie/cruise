@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Available Cruise Journeys</h2>
+<p>Browse our premier selection of cruises and set sail on your next adventure.</p>
+<hr>
+
+{% for cruise in cruises %}
+    <div class="card">
+        <h3>{{ cruise.name }}</h3>
+        <p><strong>📍 Destination:</strong> {{ cruise.destination }}</p>
+        <p><strong>📅 Departure Date:</strong> {{ cruise.departure_date }}</p>
+        <p><strong>💰 Price:</strong> ${{ cruise.price }} per ticket</p>
+        <p>{{ cruise.description }}</p>
+        <a href="{% url 'book_cruise' cruise.id %}" class="btn">Book This Cruise</a>
+    </div>
+{% empty %}
+    <div class="card" style="text-align: center;">
+        <p>No cruises available right now. Check back later!</p>
+    </div>
+{% endfor %}
+{% endblock %}
